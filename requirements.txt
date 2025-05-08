@@ -1,0 +1,7 @@
+streamlit
+pytesseract
+Pillow
+PyPDF2
+nltk
+sentence-transformers
+torch
