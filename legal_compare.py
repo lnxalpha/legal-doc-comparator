@@ -1,35 +1,44 @@
 import pytesseract
 from PIL import Image
 from PyPDF2 import PdfReader
-import io
+import docx
 import re
 import nltk
 from nltk.tokenize import sent_tokenize
 from sentence_transformers import SentenceTransformer, util
-import base64
 
 nltk.download("punkt")
 
 model = SentenceTransformer("all-MiniLM-L6-v2")
 
 def extract_text_from_file(file):
+    """Extract text from DOCX or PDF file."""
     if file.name.endswith(".pdf"):
         reader = PdfReader(file)
         text = ""
         for page in reader.pages:
             text += page.extract_text() or ""
         return text
+    elif file.name.endswith(".docx"):
+        doc = docx.Document(file)
+        text = ""
+        for para in doc.paragraphs:
+            text += para.text + "\n"
+        return text
     else:
         image = Image.open(file)
         return pytesseract.image_to_string(image)
 
 def clean_and_tokenize(text):
+    """Clean and tokenize text into sentences."""
     text = re.sub(r"\s+", " ", text)
     return sent_tokenize(text)
 
 def compare_documents(file1, file2):
+    """Compare two documents (PDF, DOCX, or image) and return the comparison results."""
     text1 = extract_text_from_file(file1)
     text2 = extract_text_from_file(file2)
+    
     sents1 = clean_and_tokenize(text1)
     sents2 = clean_and_tokenize(text2)
 
