@@ -2,6 +2,7 @@ streamlit
 pytesseract
 Pillow
 PyPDF2
+docx
 nltk
 sentence-transformers
 torch
