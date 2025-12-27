@@ -9,17 +9,16 @@ import nltk
 from nltk.tokenize import sent_tokenize
 from sentence_transformers import SentenceTransformer, util
 
+import shutil
+print("Tesseract:", shutil.which("tesseract"))
+print("Poppler:", shutil.which("pdftoppm"))
+
 # ---------- Initialization ----------
 # Make sure punkt is downloaded once
-def ensure_nltk():
-    try:
-        nltk.data.find("tokenizers/punkt")
-        nltk.data.find("tokenizers/punkt_tab/english")
-    except LookupError:
-        raise RuntimeError(
-            "NLTK resources missing. Run:\n"
-            "python -m nltk.downloader punkt punkt_tab"
-        )
+try:
+    nltk.data.find("tokenizers/punkt")
+except LookupError:
+    nltk.download("punkt")
 
 ensure_nltk()
 
