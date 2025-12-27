@@ -20,8 +20,6 @@ try:
 except LookupError:
     nltk.download("punkt")
 
-ensure_nltk()
-
 # Load embedding model
 model = SentenceTransformer("all-MiniLM-L6-v2")
 
