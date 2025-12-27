@@ -1,0 +1,10 @@
+streamlit
+pytesseract
+Pillow
+PyPDF2
+python-docx
+nltk
+sentence-transformers==2.2.2
+transformers==4.30.2
+huggingface_hub==0.16.4
+torch>=1.9
