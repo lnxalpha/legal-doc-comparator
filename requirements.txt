@@ -3,6 +3,8 @@ sentence-transformers==2.2.2
 torch==2.1.2+cpu
 torchvision==0.16.2+cpu
 --extra-index-url https://download.pytorch.org/whl/cpu
+transformers==4.30.2
+huggingface_hub==0.16.4
 
 pdf2image
 pytesseract
