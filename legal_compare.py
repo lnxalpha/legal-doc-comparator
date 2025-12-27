@@ -15,20 +15,18 @@ print("Tesseract:", shutil.which("tesseract"))
 print("Poppler:", shutil.which("pdftoppm"))
 
 # ---------- Initialization ----------
-# Make sure punkt is downloaded once
-try:
-    nltk.data.find("tokenizers/punkt")
-except LookupError:
-    nltk.download("punkt")
-
+# Set NLTK data path first
 nltk_data_path = os.path.join(os.getcwd(), "nltk_data")
 os.makedirs(nltk_data_path, exist_ok=True)
-nltk.data.path.append(nltk_data_path)
+nltk.data.path.insert(0, nltk_data_path)
 
-try:
-    nltk.data.find("tokenizers/punkt")
-except LookupError:
-    nltk.download("punkt", download_dir=nltk_data_path)
+# Download both punkt and punkt_tab for compatibility
+for resource in ["punkt", "punkt_tab"]:
+    try:
+        nltk.data.find(f"tokenizers/{resource}")
+    except LookupError:
+        print(f"Downloading {resource}...")
+        nltk.download(resource, download_dir=nltk_data_path)
 
 # Load embedding model
 model = SentenceTransformer("all-MiniLM-L6-v2")
