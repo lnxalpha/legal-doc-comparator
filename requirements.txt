@@ -1,13 +1,13 @@
 streamlit
 sentence-transformers==2.2.2
-torch==2.9.1+cpu
-torchvision==0.17.1+cpu
---extra-index-url https://download.pytorch.org/whl/cpu
+transformers==4.30.2
+huggingface_hub==0.16.4
 pdf2image
 pytesseract
 Pillow
 PyPDF2
 python-docx
 nltk
-transformers==4.30.2
-huggingface_hub==0.16.4
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.2.1+cpu
+torchvision==0.17.1+cpu
